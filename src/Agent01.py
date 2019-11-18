@@ -39,6 +39,7 @@ class Agent01(ARC):
         # replace 10 with zeros
         self.calculated_output_matrix[self.calculated_output_matrix == 10] = 0
         self.input_matrix[self.input_matrix == 10] = 0
+        return self.calculated_output_matrix
 
 
 

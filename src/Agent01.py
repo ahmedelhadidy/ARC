@@ -7,22 +7,11 @@ class Agent01(ARC):
 
     generators = {0:[0,1,2] , 1:[3,4,5] , 2:[6,7,8]}
 
-    def __init__(self,f, use_train = False, train_index = 0):
-        try:
-            super(Agent01, self).__init__(f,use_train,train_index)
-            self.validate_shape()
-        except:
-            print('Error ')
-
-    def validate_shape(self):
-        shape = self.input_matrix.shape
-        if shape[0] != 3 or shape[0] != 3:
-            raise Exception('input problem matrix is in invalid shape')
-
     def generate_output_matrix(self):
+        input_mtx = self.input_matrix.copy()
         # Replace zeros with 10
-        self.input_matrix[self.input_matrix == 0] = 10
-        input_graph = nx.from_numpy_matrix(self.input_matrix,create_using=nx.DiGraph())
+        input_mtx[input_mtx == 0] = 10
+        input_graph = nx.from_numpy_matrix(input_mtx,create_using=nx.DiGraph())
         output_graph = nx.DiGraph()
 
         for s,d,w in input_graph.edges(data=True):
@@ -35,11 +24,11 @@ class Agent01(ARC):
                     oy = self.generators[d].index(y)
                     output_graph.add_edge(x, y, weight=input_graph[ox][oy]['weight'])
 
-        self.calculated_output_matrix =  nx.to_numpy_array(output_graph,dtype=int)
+        output_matrix =  nx.to_numpy_array(output_graph,dtype=int)
         # replace 10 with zeros
-        self.calculated_output_matrix[self.calculated_output_matrix == 10] = 0
-        self.input_matrix[self.input_matrix == 10] = 0
-        return self.calculated_output_matrix
+        output_matrix[output_matrix == 10] = 0
+
+        return output_matrix
 
 
 

@@ -13,9 +13,8 @@ class Agent03(ARC):
         G1 = nx.from_numpy_matrix(M1, create_using=nx.DiGraph())
         G2 = nx.from_numpy_matrix(M2, create_using=nx.DiGraph())
         OG = compose(G1, G2)
-        self.calculated_output_matrix = nx.to_numpy_array(OG, dtype=int)
+        output_matrix = nx.to_numpy_array(OG, dtype=int)
 
-        self.calculated_output_matrix[self.calculated_output_matrix == 0] = 2
-        self.calculated_output_matrix[self.calculated_output_matrix != 2] = 0
-
-        return self.calculated_output_matrix
+        output_matrix[output_matrix == 0] = 2
+        output_matrix[output_matrix != 2] = 0
+        return output_matrix

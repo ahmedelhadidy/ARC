@@ -1,6 +1,9 @@
 from src.Agent02 import *
+import sys
 
-json_file = 'f:/personal/Master/Modules/Prog-tools/assignment3/solution/ARC/data/training/0520fde7.json'
+json_file = '../data/training/0520fde7.json'
+if len(sys.argv) > 1 :
+    json_file = sys.argv[1]
 
 explore_object = Agent02.explore(json_file)
 

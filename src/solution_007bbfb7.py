@@ -11,6 +11,6 @@ for k,v in explore_object.items():
     for x in range(v):
         ag = Agent01(json_file,area=k,index=x)
         ag.solve()
-        ag.print()
+        ag.print_spec()
 
 
